@@ -18,9 +18,10 @@
                     <!-- all assets that can be cached by browser -->
                     <img crossorigin="anonymous" id="skymap" src="/assets/textures/CloudySky.jpg">
                     <img crossorigin="anonymous" id="cowmap" src="/assets/textures/Cow.png">
-                    <a-asset-item crossorigin="anonymous" id="Helmet-gltf" src="/assets/models/DamagedHelmet.glb">
+                  <!--  <a-asset-item crossorigin="anonymous" id="Helmet-gltf" src="/assets/models/DamagedHelmet.glb">-->
                     <a-asset-item crossorigin="anonymous" id="Cow-obj" src="/assets/models/Cow.obj">
-
+                    <a-asset-item crossorigin="anonymous" id="Chicken-gltf" src="/assets/models/out.glb">
+                    <a-asset-item crossorigin="anonymous" id="Balloon-gltf" src="/assets/models/island.glb"></a-asset-item>
                     <!-- use this method if you are having problems with sound playing -->
                     <!-- sounds from "SuperSays" project : https://github.com/supermedium/supersays/tree/master/src/assets -->
                      <!-- <a-asset-item crossorigin="anonymous" id="create-sound" src="/assets/sound/0.ogg" response-type="arraybuffer"></a-asset-item>-->
@@ -53,11 +54,13 @@
                 <a-entity light="type: ambient; intensity: 1.0; color:#bbb;"></a-entity>
             
                 <!-- our helmet model from : https://github.com/KhronosGroup/glTF-Sample-Models -->
-                <a-gltf-model create-cow-component src="#Helmet-gltf" position="-2 0.6 -4" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
+               <!-- <a-gltf-model create-cow-component src="#Helmet-gltf" position="-2 0.6 -4" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>-->
+                <a-gltf-model create-cow-component src="#Chicken-gltf" position="0 0.15 -10" scale="2 2 2" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
+                <a-gltf-model create-cow-component src="#Balloon-gltf" position="1 -11 -15.5" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
                     
-                <!-- plane so we can see shadows -->
+                <!-- plane so we can see shadows 
                 <a-entity id="plane" geometry="primitive:plane; width:4; height:4;" position="0 0 -4" rotation="-90 0 0" 
-                    shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.0;"></a-entity>
+                    shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.0;"></a-entity>-->
             
                 <!-- manual method of creating "sky sphere" -->
                 <a-entity id="sky"

@@ -24,7 +24,9 @@ AFRAME.registerComponent('create-cow-component', {
         cowElem.setAttribute('obj-model', {obj:'/assets/models/Cow.obj'});
         cowElem.setAttribute('material', {src:'/assets/textures/Cow.png'});
         cowElem.setAttribute('remove-component', {}); 
-        cowElem.setAttribute('position', {x:2, y:0, z:-4});
+        cowElem.setAttribute('position', {x:-4, y:-4, z:-18});
+        cowElem.setAttribute('scale', {x:0.01, y:0.01, z:0.01});
+        
         
         let scene = document.querySelector('a-scene');
         scene.appendChild(cowElem);
