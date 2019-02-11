@@ -4,6 +4,7 @@ AFRAME.registerComponent('create-cow-component', {
         const Context_AF = this;
         Context_AF.soundElem = document.querySelector('#createSound');
 
+        //creating cow on click respond
         Context_AF.el.addEventListener('click', function(event) {
             console.log("click");
             //object clicked - lets create a cow!
@@ -24,9 +25,11 @@ AFRAME.registerComponent('create-cow-component', {
         cowElem.setAttribute('obj-model', {obj:'/assets/models/Cow.obj'});
         cowElem.setAttribute('material', {src:'/assets/textures/Cow.png'});
         cowElem.setAttribute('remove-component', {}); 
+     //controling position and scale of cow
         cowElem.setAttribute('position', {x:-4, y:-4, z:-18});
         cowElem.setAttribute('scale', {x:0.01, y:0.01, z:0.01});
-        
+    //getting click of mouse to respond
+        cowElem.setAttribute('cursor');
         
         let scene = document.querySelector('a-scene');
         scene.appendChild(cowElem);

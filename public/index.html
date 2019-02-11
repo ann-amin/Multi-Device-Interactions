@@ -9,6 +9,7 @@
         <!-- lets load in our components -->
         <script src="/js/create-cow-component.js"></script>
         <script src="/js/remove-component.js"></script>
+        <script src="/js/eggsound.js"></script>
     </head>
     <body>
         <!-- main scene and we added shadows .. -->
@@ -29,53 +30,41 @@
                     <!--<a-asset-item crossorigin="anonymous" id="delete-sound" src="/assets/sound/1.ogg" response-type="arraybuffer"></a-asset-item>-->
 
                     <!-- this is the recommended method to preload sound though the above method seems to work consistently -->
-                    <audio id="create-sound" crossorigin="anonymous" src="/assets/sound/0.ogg" ></audio> 
-                    <audio id="delete-sound" crossorigin="anonymous" src="/assets/sound/1.ogg" ></audio> 
+                    <audio id="create-sound" crossorigin="anonymous" src="/assets/sound/dog.mp3" ></audio> 
+                    <audio id="sizzleSound" crossorigin="anonymous" src="/assets/sound/sizzle.mp3" ></audio> 
+                    <audio id="delete-sound" crossorigin="anonymous" src="/assets/sound/sneeze.mp3" ></audio> 
                 </a-assets>
-
-                 
-                       
-
-
-
-                <!-- traditional method of creating a camera and cursor component for selection. select with reticle. -->
-                <!-- Also added in controls for desktop mouse/kb -->
+                
+                <!-- controlling camera with wasd -->
                 <a-entity position="0 2 0 " camera look-controls wasd-controls>
                     <!-- if you add rayOrigin:mouse to teh cursor properties selection happens where you click -->
-                    <!-- <a-entity   cursor="fuse:true; fuseTimeout:500; rayOrigin:mouse;" -->
-                    <a-entity   cursor="fuse:true; fuseTimeout:500;"
-                                position="0 0 -1"
-                                geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
-                                material="shader:flat; color:black;" >
-                    </a-entity>
-                <!--sdfgdsfhdfh-->
+                    <a-entity   cursor="fuse:false; fuseTimeout:500; rayOrigin:mouse;"></a-entity>
                 </a-entity>
 
                 <!-- sound entities we will query and play in components -->
                 <a-entity id="createSound" sound="src:#create-sound"></a-entity>
+
+                <a-entity id="sizzle" sound="src:#sizzleSound"></a-entity>
                 <a-entity id="deleteSound" sound="src:#delete-sound"></a-entity>
             
-                <!-- default lighting added in manually -->
+                <!-- default lighting added in manually didn't change this-->
                 <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.5 1 1"></a-entity>
                 <a-entity light="type: ambient; intensity: 1.0; color:#bbb;"></a-entity>
             
-                <!-- our helmet model from : https://github.com/KhronosGroup/glTF-Sample-Models -->
-               <!-- <a-gltf-model create-cow-component src="#Helmet-gltf" position="-2 0.6 -4" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>-->
+              <!-- creating low poly cow -->
                 <a-gltf-model create-cow-component src="#Chicken-gltf" position="0 0.15 -10" scale="2 2 2" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
-                <a-gltf-model create-cow-component src="#Balloon-gltf" position="1 -11 -15.5" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
-                <a-entity create-cow-component obj-model="obj:#Egg-obj;" position="0 0 0" scale="0.1 0.1 0.1" material="color:#fff; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.2;" shadow="cast:true; receive:true;">
-                    
-                        <a-animation attribute="position" direction="alternate" dur="2000" repeat="indefinite"
-                        to="0 2.2 -5"></a-animation>
-                      <a-animation attribute="rotation" begin="click" dur="2000" to="360 405 45"></a-animation>
-                      <a-animation attribute="scale" begin="mouseenter" dur="300" to="0.3 0.3 0.3"></a-animation>
-                      <a-animation attribute="scale" begin="mouseleave" dur="300" to="2 2 2"></a-animation>
+             <!-- creating floating island -->
+                <a-gltf-model src="#Balloon-gltf" position="1 -11 -15.5" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
+                
+                <!-- creating egg obj, when you click the egg it grows bigger and sizzle noise appears -->
+                <a-entity eggsound obj-model="obj:#Egg-obj;" position="3 0 -7" scale="0.1 0.1 0.1" material="color:#fff; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.2;" shadow="cast:true; receive:true;">
+                <!--<a-animation attribute="position" direction="alternate" repeat="indefinite" to="0 2.2 -5"></a-animation>-->
+                <a-animation attribute="scale" begin="click" direction="alternate" dur="200" to="3 3 3"></a-animation>
                 </a-entity>   
                 
+            
                 
-                <!-- plane so we can see shadows 
-                <a-entity id="plane" geometry="primitive:plane; width:4; height:4;" position="0 0 -4" rotation="-90 0 0" 
-                    shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.0;"></a-entity>-->
+            <!-- I kept this sky because I like it :) -->
             
                 <!-- manual method of creating "sky sphere" -->
                 <a-entity id="sky"
